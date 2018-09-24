@@ -301,8 +301,12 @@ objects:
             sleep 5
 
             # oc new-app -f https://raw.githubusercontent.com/RHsyseng/docker-rhel-sonarqube/master/templates/sonarqube-ephemeral-template.yaml --param=SONARQUBE_SERVICE_NAME=sonarqube
-            oc new-build --name=sonarqube https://github.com/RHsyseng/docker-rhel-sonarqube
-            oc new-app sonarqube -e SONARQUBE_JDBC_URL="jdbc:postgresql://sonar-postgresql/sonar"
+            
+            #oc new-build --name=sonarqube https://github.com/RHsyseng/docker-rhel-sonarqube
+            #oc new-app sonarqube -e SONARQUBE_JDBC_URL="jdbc:postgresql://sonar-postgresql/sonar"
+            #oc expose svc/sonarqube
+            
+            oc new-app registry.centos.org/rhsyseng/sonarqube
             oc expose svc/sonarqube
 
             if [ "${WITH_CHE}" == "true" ] ; then
