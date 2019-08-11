@@ -342,7 +342,6 @@ objects:
             if [ $_RETURN != "200" ] && [ $_RETURN != "302" ] ; then
               echo "ERROR: Failed to create Gogs admin"
               cat /tmp/curl.log
-              exit 255
             fi
 
             sleep 10
@@ -359,9 +358,8 @@ objects:
             -u $GOGS_USER:$GOGS_PWD -X POST http://$GOGS_SVC:3000/api/v1/repos/migrate -d @/tmp/data.json)
 
             if [ $_RETURN != "201" ] ;then
-              echo "ERROR: Failed to imported openshift-tasks GitHub repo"
+              echo "ERROR: Failed to import openshift-tasks GitHub repo"
               cat /tmp/curl.log
-              exit 255
             fi
 
             sleep 5
@@ -386,7 +384,6 @@ objects:
             if [ $_RETURN != "201" ] ; then
               echo "ERROR: Failed to set webhook"
               cat /tmp/curl.log
-              exit 255
             fi
           image: openshift/origin:v3.9.0
           name: cicd-demo-installer-job
